@@ -1,0 +1,33 @@
+{
+  "name": "sudoku_solver",
+  "version": "0.1.0",
+  "homepage": "https://42tg.github.io/sudoku_solver",
+  "private": true,
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/components/*.{js,jsx}",
+      "src/**/classes/*.{js,jsx}",
+      "src/**/App.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ]
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --env=jsdom --coverage",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
+ 
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.2"
+  }
+}
