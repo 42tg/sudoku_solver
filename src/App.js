@@ -9,7 +9,8 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      sudoku : new SudokuSolver()
+      sudoku : new SudokuSolver(),
+      highlight :[]
     }
 
     this.state.sudoku.set(0, 1, 2)
@@ -55,8 +56,18 @@ class App extends Component {
     if(result.done) return
     console.log(result.value)
     this.state.sudoku.set(result.value.x, result.value.y, result.value.scope.shift())
-    this.setState({sudoku : this.state.sudoku})
+    this.setState({sudoku : this.state.sudoku, highlight: []})
+  
   }
+  showHint = () => {
+    const iterator = this.state.sudoku.findNext()
+    const result = iterator.next()
+    if(result.done) return
+    console.log(result.value)
+    this.state.highlight.push(result.value)
+    this.setState({highlight: this.state.highlight })
+  }
+
   render() {
     return (
       <div className="App">
@@ -64,8 +75,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to SudokuSolver</h1>
         </header>
-        <BoardView board={this.state.sudoku}></BoardView>
+        <BoardView board={this.state.sudoku} highlight={this.state.highlight}></BoardView>
         <button onClick={this.solveNext}>Solve Next</button>
+        <button onClick={this.showHint}>Show hint</button>
       </div>
     );
   }
